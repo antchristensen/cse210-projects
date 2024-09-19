@@ -15,5 +15,16 @@ class Program
         job2._jobTitle = "Bus Driver";
         job2._startYear =2001;
         job2._endYear = 2024;
+
+
+        Resume myResume = new Resume();
+        myResume._name = "Anthony Christensen";
+
+        myResume._job.Add(job1);
+        myResume._job.Add(job2);
+
+        myResume.Display();
+
+
     }
 }
