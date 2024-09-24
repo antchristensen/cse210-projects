@@ -2,37 +2,40 @@ using System;
 
 public class Entry
 {
-    public string Prompt;
-    public string Response;
-    public string Date;
+    private string _prompt;     
+    private string _response;   
+    private string _date;  
+    private string _location;      
 
-    public Entry(string prompt, string response, string date)
+    public Entry(string prompt, string response, string date, string location)
     {
-        Prompt = prompt;
-        Response = response;
-        Date = date;
+        _prompt = prompt;       
+        _response = response;    
+        _date = date;  
+        _location = location;          
     }
 
     public override string ToString()
     {
-        return $"Date: {Date}, Prompt: {Prompt}, Response: {Response}";
+        return $"Date: {_date}, Location: {_location}, Prompt: {_prompt}, Response: {_response}"; 
     }
 
     public string ToFileFormat()
     {
-        return $"{Prompt}|{Response}|{Date}";
+        return $"{_prompt}|{_response}|{_date}|{_location}"; 
     }
 
     public static Entry FromFileFormat(string line)
     {
         var parts = line.Split('|');
-        if (parts.Length != 3)
+        if (parts.Length != 4)
         {
             throw new FormatException("Invalid entry format");
         }
-        return new Entry(parts[0], parts[1], parts[2]);
+        return new Entry(parts[0], parts[1], parts[2], parts[3]);
     }
 }
+
 
 public class Journal
 {
@@ -152,9 +155,13 @@ public class JournalApp
         Console.Write("Your response: ");
         string response = Console.ReadLine();
         string date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-        var entry = new Entry(prompt, response, date);
+        Console.Write("Location: ");
+        string location = Console.ReadLine();
+
+        var entry = new Entry(prompt, response, date, location);
         journal.AddEntry(entry);
         Console.WriteLine("Entry added.\n");
+
     }
 
     private static void SaveJournal()
@@ -170,4 +177,5 @@ public class JournalApp
         string filename = Console.ReadLine();
         journal.LoadFromFile(filename);
     }
+    
 }
