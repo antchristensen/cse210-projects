@@ -1,5 +1,5 @@
 using System;
-
+// I have added the ability to add a location of where said journal entry was at. Added it into Class Entry, and journalApp. This will also help the user remember where i had this experience. 
 public class Entry
 {
     private string _prompt;     
