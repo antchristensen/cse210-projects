@@ -55,14 +55,14 @@ public class Journal
                 writer.WriteLine(entry.ToFileFormat());
             }
         }
-        Console.WriteLine("Journal saved.\n");
+        Console.WriteLine("Journal saved.");
     }
 
     public void LoadFromFile(string filename)
     {
         if (!File.Exists(filename))
         {
-            Console.WriteLine("File not found.\n");
+            Console.WriteLine("File not found.");
             return;
         }
 
@@ -82,14 +82,14 @@ public class Journal
                 }
             }
         }
-        Console.WriteLine("Journal loaded.\n");
+        Console.WriteLine("Journal loaded.");
     }
 
     public void DisplayEntries()
     {
         if (entries.Count == 0)
         {
-            Console.WriteLine("No entries to display.\n");
+            Console.WriteLine("No entries to display.");
             return;
         }
         foreach (var entry in entries)
